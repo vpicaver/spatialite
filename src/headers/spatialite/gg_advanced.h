@@ -60,9 +60,9 @@ Regione Toscana - Settore Sistema Informativo Territoriale ed Ambientale
  Geometry handling functions: advanced
  */
 
-#ifndef _GG_ADVANCED_H
+#ifndef GG_ADVANCED_H
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-#define _GG_ADVANCED_H
+#define GG_ADVANCED_H
 #endif
 
 /** Gaia-to-GEOS: all geometries */

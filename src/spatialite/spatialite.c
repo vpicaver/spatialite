@@ -28672,7 +28672,7 @@ fnct_BlobToFile (sqlite3_context * context, int argc, sqlite3_value ** argv)
       }
     sqlite3_result_int (context, ret);
 }
-
+#ifndef OMIT_GEOS
 static int
 load_dxf (sqlite3 * db_handle, struct splite_internal_cache *cache,
 	  char *filename, int srid, int append, int force_dims, int mode,
@@ -28714,6 +28714,7 @@ load_dxf (sqlite3 * db_handle, struct splite_internal_cache *cache,
     gaiaDestroyDxfParser (dxf);
     return ret;
 }
+
 
 static void
 fnct_ImportDXF (sqlite3_context * context, int argc, sqlite3_value ** argv)
@@ -29139,7 +29140,7 @@ fnct_ExportDXF (sqlite3_context * context, int argc, sqlite3_value ** argv)
 	gaiaFreeGeomColl (geom);
     sqlite3_free (path);
 }
-
+#endif
 static void
 fnct_CheckDuplicateRows (sqlite3_context * context, int argc,
 			 sqlite3_value ** argv)
@@ -29424,6 +29425,7 @@ fnct_ImportXLS (sqlite3_context * context, int argc, sqlite3_value ** argv)
 }
 #endif /* end FREEXL support */
 
+#ifndef OMIT_ICONV
 static void
 fnct_ImportDBF (sqlite3_context * context, int argc, sqlite3_value ** argv)
 {
@@ -29494,6 +29496,7 @@ fnct_ImportDBF (sqlite3_context * context, int argc, sqlite3_value ** argv)
     else
 	sqlite3_result_int (context, rows);
 }
+
 
 static void
 fnct_ExportDBF (sqlite3_context * context, int argc, sqlite3_value ** argv)
@@ -29759,6 +29762,7 @@ fnct_ExportSHP (sqlite3_context * context, int argc, sqlite3_value ** argv)
     else
 	sqlite3_result_int (context, rows);
 }
+#endif
 
 static void
 fnct_ExportKML (sqlite3_context * context, int argc, sqlite3_value ** argv)
@@ -37218,6 +37222,7 @@ register_spatialite_sql_functions (void *p_db, const void *p_cache)
 	  sqlite3_create_function_v2 (db, "BlobToFile", 2,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, 0,
 				      fnct_BlobToFile, 0, 0, 0);
+#ifndef OMIT_GEOS
 	  sqlite3_create_function_v2 (db, "ImportDXF", 1,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, cache,
 				      fnct_ImportDXF, 0, 0, 0);
@@ -37230,12 +37235,14 @@ register_spatialite_sql_functions (void *p_db, const void *p_cache)
 	  sqlite3_create_function_v2 (db, "ImportDXFfromDir", 8,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, cache,
 				      fnct_ImportDXFfromDir, 0, 0, 0);
-	  sqlite3_create_function_v2 (db, "ExportDXF", 9,
+          sqlite3_create_function_v2 (db, "ExportDXF", 9,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, cache,
 				      fnct_ExportDXF, 0, 0, 0);
 	  sqlite3_create_function_v2 (db, "ExportDXF", 10,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, cache,
 				      fnct_ExportDXF, 0, 0, 0);
+#endif
+#ifndef OMIT_ICONV
 	  sqlite3_create_function_v2 (db, "ImportDBF", 3,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, 0,
 				      fnct_ImportDBF, 0, 0, 0);
@@ -37245,6 +37252,7 @@ register_spatialite_sql_functions (void *p_db, const void *p_cache)
 	  sqlite3_create_function_v2 (db, "ImportDBF", 5,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, 0,
 				      fnct_ImportDBF, 0, 0, 0);
+
 	  sqlite3_create_function_v2 (db, "ExportDBF", 3,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, 0,
 				      fnct_ExportDBF, 0, 0, 0);
@@ -37281,6 +37289,7 @@ register_spatialite_sql_functions (void *p_db, const void *p_cache)
 	  sqlite3_create_function_v2 (db, "ExportSHP", 5,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, 0,
 				      fnct_ExportSHP, 0, 0, 0);
+#endif
 	  sqlite3_create_function_v2 (db, "ExportKML", 3,
 				      SQLITE_UTF8 | SQLITE_DETERMINISTIC, 0,
 				      fnct_ExportKML, 0, 0, 0);

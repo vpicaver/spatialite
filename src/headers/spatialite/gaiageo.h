@@ -60,10 +60,8 @@ the terms of any one of the MPL, the GPL or the LGPL.
 #endif
 #endif
 
-#ifndef _GAIAGEO_H
+#ifndef GAIAGEO_H
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-#define _GAIAGEO_H
-#endif
 
 #include "gg_const.h"
 #include "gg_structs.h"
@@ -73,5 +71,8 @@ the terms of any one of the MPL, the GPL or the LGPL.
 #include "gg_dynamic.h"
 #include "gg_advanced.h"
 #include "gg_xml.h"
+
+#define GAIAGEO_H
+#endif
 
 #endif /* _GAIAGEO_H */

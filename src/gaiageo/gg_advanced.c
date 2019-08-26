@@ -1191,6 +1191,9 @@ gaiaIsToxic (gaiaGeomCollPtr geom)
     return gaiaIsToxic_r (NULL, geom);
 }
 
+void gaiaSetGeosAuxErrorMsg_r(const void*, const char*);
+void gaiaSetGeosAuxErrorMsg(const char*);
+
 GAIAGEO_DECLARE int
 gaiaIsToxic_r (const void *cache, gaiaGeomCollPtr geom)
 {
