@@ -12,13 +12,13 @@
 /* #undef ENABLE_GEOPACKAGE */
 
 /* Should be defined in order to enable LIBXML2 support. */
-#define ENABLE_LIBXML2 1
+//#define ENABLE_LIBXML2 1
 
 /* Should be defined in order to enable LWGEOM support. */
 /* #undef ENABLE_LWGEOM */
 
 /* Should be defined in order to enable GEOS_ADVANCED support. */
-#define GEOS_ADVANCED 1
+//#define GEOS_ADVANCED 1
 
 /* Should be defined in order to enable GEOS_TRUNK experimental support. */
 /* #undef GEOS_TRUNK */
@@ -63,7 +63,7 @@
 #define HAVE_LIBSQLITE3 1
 
 /* Define to 1 if you have the `z' library (-lz). */
-#define HAVE_LIBZ 1
+//#define HAVE_LIBZ 1
 
 /* Define to 1 if you have the `localtime_r' function. */
 #define HAVE_LOCALTIME_R 1
@@ -160,25 +160,25 @@
 #define NDEBUG 1
 
 /* Should be defined in order to disable EPSG full support. */
-/* #undef OMIT_EPSG */
+#define OMIT_EPSG
 
 /* Should be defined in order to disable FREEXL support. */
-/* #undef OMIT_FREEXL */
+ #define OMIT_FREEXL
 
 /* Should be defined in order to disable GEOCALLBACKS support. */
 #define OMIT_GEOCALLBACKS 1
 
 /* Should be defined in order to disable GEOS support. */
-/* #undef OMIT_GEOS */
+#define OMIT_GEOS
 
 /* Should be defined in order to disable ICONV support. */
-/* #undef OMIT_ICONV */
+//#define OMIT_ICONV
 
 /* Should be defined in order to disable MATHSQL support. */
 /* #undef OMIT_MATHSQL */
 
 /* Should be defined in order to disable PROJ.4 support. */
-/* #undef OMIT_PROJ */
+#define OMIT_PROJ
 
 /* Name of package */
 #define PACKAGE "libspatialite"

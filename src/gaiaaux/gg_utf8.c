@@ -62,9 +62,10 @@ the terms of any one of the MPL, the GPL or the LGPL.
 #include <iconv.h>
 #define LIBCHARSET_STATIC
 #ifdef _MSC_VER
+#include <localcharset.h>
 /* <localcharset.h> isn't supported on OSGeo4W */
 /* applying a tricky workaround to fix this issue */
-extern const char *locale_charset (void);
+//extern const char *locale_charset (void);
 #else /* sane Windows - not OSGeo4W */
 #include <localcharset.h>
 #endif /* end localcharset */

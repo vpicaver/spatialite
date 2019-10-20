@@ -72,11 +72,11 @@ src/md5/md5.c \
 src/dxf/dxf_parser.c \
 src/gaiaaux/gg_sqlaux.c \
 src/gaiaaux/gg_utf8.c \
-src/gaiaexif/gaia_exif.c
-
+src/gaiaexif/gaia_exif.c \
 
 HEADERS += \
 config.h \
+config-msvc.h \
 src/headers/spatialite.h \
 src/headers/spatialite_private.h \
 src/headers/spatialite/control_points.h \
@@ -102,6 +102,15 @@ src/headers/spatialite/sqlite.h
 
 INCLUDEPATH += src/headers \
 .
+
+win32 {
+    INCLUDEPATH += $${PWD}/../winlib/zlib-win-build \
+    $${PWD}/../sqlite \
+    $${PWD}/../winlib/libxml2-win-build/include \
+    $${PWD}/../winlib/libiconv-win-build/include \
+    $${PWD}/../winlib/libiconv-win-build/srclib
+    DEFINES += YY_NO_UNISTD_H
+}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
