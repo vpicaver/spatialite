@@ -143,7 +143,7 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <unistd.h> header file. */
-#define HAVE_UNISTD_H 1
+//#define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have the <zlib.h> header file. */
 #define HAVE_ZLIB_H 1
@@ -223,10 +223,10 @@
 #define _FILE_OFFSET_BITS 64
 
 /* Must be defined in order to enable huge-file support. */
-#define _LARGEFILE_SOURCE 1
+//#define _LARGEFILE_SOURCE 1
 
 /* Must be defined in order to enable huge-file support. */
-#define _LARGE_FILE 1
+//#define _LARGE_FILE 1
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
