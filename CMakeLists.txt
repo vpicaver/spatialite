@@ -1,9 +1,12 @@
-cmake_minimum_required(VERSION 2.8.12)
-project(spatialite LANGUAGES C)
+cmake_minimum_required(VERSION 3.14)
+project(spatialite VERSION 0.1 LANGUAGES C)
 
 find_package(SQLite3 REQUIRED)
 find_package(ZLIB REQUIRED)
-find_package(Iconv REQUIRED)
+
+if(WIN32)
+    find_package(Iconv REQUIRED)
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -69,8 +72,14 @@ add_library(spatialite STATIC
     src/gaiaexif/gaia_exif.c
     )
 target_include_directories(spatialite PUBLIC src/headers ./)
-target_link_libraries(spatialite PRIVATE SQLite::SQLite3 ZLIB::ZLIB Iconv::Iconv)
 
-if(WIN32)
+#target_link_libraries(spatialite PRIVATE SQLite::SQLite3 ZLIB::ZLIB log) # Iconv::Iconv)
+
+if(ANDROID)
+    message(STATUS "Spatialite Android")
+    target_link_libraries(spatialite PRIVATE SQLite::SQLite3 ZLIB::ZLIB log)
+elseif(WIN32)
     target_compile_definitions(spatialite PRIVATE YY_NO_UNISTD_H)
+    target_link_libraries(spatialite PRIVATE SQLite::SQLite3 ZLIB::ZLIB Iconv::Iconv)
 endif()
+
